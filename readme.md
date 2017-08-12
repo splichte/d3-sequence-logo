@@ -4,7 +4,7 @@ This project implements sequence logo generation using d3, given input sequence 
 
 ## Usage
 
-Open `index.html` from Chrome/Firefox. Alternatively, visit [my webpage](http://samlichtenberg.com/static/sequence_logo).
+Open `index.html` from Chrome/Firefox. Alternatively, visit [my webpage](http://samlichtenberg.com/static/sequence_logo/index.html).
 
 ## Style
 
