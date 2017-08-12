@@ -1,0 +1,15 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+button#randseq {
+  margin-top: 100px;
+  margin-bottom: 20px;  
+}
+
+div.center {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

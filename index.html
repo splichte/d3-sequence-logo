@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="js/d3.v4.min.js"></script>
+  <script src="js/sequence_logo.js"></script>
+</head>
+<body>
+  <div id="button" class="center"><button id="randseq">Generate random sequences</button></div>
+  <div id="main" class="center">
+  </div>
+</body>
+<script> 
+  /**
+  * Sequence data. 
+  *
+  * In a real application, this would not be hardcoded, 
+  * but rather a function would be created to accept and parse 
+  * user input into this format (or another simple format that d3 
+  * understands). 
+  *
+  * That function would also likely be the one to call 
+  * validateData (see below), whereas in the current implementation 
+  * we have the entryPoint call it directly.
+  */
+  
+  const sequenceData = ['AGATCGACCCT',
+    'GGAACGACGCT',
+    'GGATCGACCCT',
+    'CGATAGACGCT',
+    'CGATAGACGCT',
+    'GGATCGACCCT'];
+
+  /*
+   * These bounds are prototype-specific and are meant to preserve
+   * visual appearance. 
+   *
+   * In a real setting, it would need to be carefully considered 
+   * what they should be (based on usage expectations, etc) since 
+   * we would not want the user to be able to input unbounded data 
+   * without altering behavior somehow (if the length were 
+   * compressed to fit in a viewport, each individual position would 
+   * be reduced to 0 width)
+   */
+ 
+  const seqLenBounds = [5, 25];
+  const seqNumBounds = [1, 10];
+
+  entryPoint(sequenceData, seqLenBounds, seqNumBounds);
+
+  document.getElementById('randseq').onclick = refreshSVG.bind(null, seqLenBounds, seqNumBounds);
+
+</script>
