@@ -4,7 +4,7 @@ This project implements sequence logo generation using d3, given input sequence 
 
 ## Usage
 
-Open `index.html` from Chrome/Firefox. Alternatively, visit [](http://samlichtenberg.com/static/sequence_logo).
+Open `index.html` from Chrome/Firefox. Alternatively, visit [my webpage](http://samlichtenberg.com/static/sequence_logo).
 
 ## Style
 
@@ -16,11 +16,11 @@ Due to the demo nature of this project, various design decisions were made that 
 
 ### Accepted input data format
 
-This application hardcodes sequence data in the form of a list of strings,for easy processing. In a real application setting, we would probably want to provide a thorough parser for the FASTA format, and provide useful error reporting to the end-user if their data does not conform to our specifications. This kind of thing (input validation) would ideally be performed server-side rather than client-side.
+This application hardcodes sequence data in the form of a list of strings, for easy processing. In a real application setting, we would probably want to provide a thorough parser for the FASTA format, and provide useful error reporting to the end-user if their data does not conform to our specifications. This kind of thing (input validation) would ideally be performed server-side rather than client-side.
 
 ### Size of accepted sequence data
 
-Because this is a demo project, we limited the length and number of sequences in the data that our application allows (see 'index.html'). This is not because the application will break if the sequence data is outside this range, but rather because the quality of visualization will be impacted. For instance, it would be impossible to visualize in a single browser window sequences with length in hundreds or thousands--at that point the visualization would cease to be useful.
+Because this is a demo project, we limited the length and number of sequences in the data that our application allows (see `index.html`). This is not because the application will break if the sequence data is outside this range, but rather because the quality of visualization will be impacted. For instance, it would be impossible to visualize in a single browser window sequences with length in hundreds or thousands--at that point the visualization would cease to be useful.
 
 How to bound the range of data that this visualization application accepts is not immediate and we may need to investigate usage patterns and end-user needs before deciding on a final solution.
 
@@ -54,6 +54,10 @@ In addition to the design decisions given above, there are also some technical d
 
 Currently, the various data around the letters 'G', 'A', 'C', 'T' (the character itself, the SVG path data, the base transforms, etc.) are  kept track of by passing around integer identifiers between various functions. This works fine for a small application, but probably makes the code a bit more difficult to modify if another developer wishes to do that.
 
+### Method of encoding letters.
+
+So that transforms can be easily applied, I produced predefined SVG path data for the letters 'G', 'C', 'A', and 'T' in a design program and exported them. This created some challenges, because letter paths do not generally have the same width in fonts, whether or not they are monospace. For instance, even in a monospace font, the letter 'T' is more narrow than the letter 'A' and this is compensated for by padding with whitespace--we can't do this easily as part of the SVG path information, to my knowledge. To remedy this situation I wound up applying a lot of predefined transforms to the letters to get them to render as desired. This is an unsatisfying solution, unfortunately.
+
 ## Contact
 
-Contact Sam Lichtenberg (splichte@gmail.com)
+Sam Lichtenberg (splichte@gmail.com)
