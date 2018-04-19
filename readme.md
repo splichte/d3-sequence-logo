@@ -1,6 +1,6 @@
-# Sequence Logo Generation
+# [--] Generation
 
-This project implements sequence logo generation using d3, given input sequence data in list form. [Wikipedia](http://en.wikipedia.org/wiki/Sequence_logo) gives a good overview of sequence logos.
+This project implements [--] generation using d3, given input sequence data in list form. [Wikipedia](http://en.wikipedia.org/wiki/Sequence_logo) gives a good overview of sequence logos.
 
 ## Usage
 
