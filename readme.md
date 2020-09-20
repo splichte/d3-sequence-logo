@@ -1,10 +1,12 @@
 # Sequence Logo Generation
 
+![image](anim.gif)
+
 This project implements sequence logo generation using d3, given input data in list form. [Wikipedia](http://en.wikipedia.org/wiki/Sequence_logo) gives a good overview of sequence logos.
 
 ## Usage
 
-Open `index.html` from Chrome/Firefox. Alternatively, visit [my webpage](http://samlichtenberg.com/static/sequence_logo/index.html).
+Open `index.html` from Chrome/Firefox. 
 
 ## Style
 
@@ -12,7 +14,7 @@ We adopted the [Airbnb style guide](https://github.com/airbnb/javascript) for Ja
 
 ## Design decisions
 
-Due to the demo nature of this project, various design decisions were made that may need to be reconsidered if this application were to be deployed in production. I make note of these decisions here. I did not change them in this project because I did not want to prematurely optimize before having an understanding of what type of environments this application would be run in.
+Due to the demo nature of this project, various design decisions were made that may need to be reconsidered if this application were to be deployed in production. 
 
 ### Accepted input data format
 
@@ -30,34 +32,10 @@ We also placed the restriction that all sequences must be of identical length. I
 
 Because the application provides its own data, there is very limited error handling. Ideally, all functions which are exposed by `sequence_logo.js` would have their inputs validated and provide useful debugging information.
 
-### Browser and d3 Compatibility
-
-This application was tested on recent versions of Chrome and Firefox. However, there are a vast array of browsers, both desktop and mobile, that this application could be run in. Deciding which browsers to support would probably depend on the end-user constituency--for instance, if many end-users run versions of Internet Explorer, that is something that would need to be considered and it would certainly require more work. At the very least, we would like to send end-users a message to please download a modern current browser to use the application, rather than silently failing.
-
-Further, this project was implemented in the v4 version of d3. If an existing codebase uses v3 or an earlier version, some things would need to be changed to be compatible (for example, d3.scaleLinear() becomes d3.scale.linear()). Most of the capabilities are the same, however.
-
-### Use of local d3 copy
-
-We chose to use a locally hosted copy of d3 instead of pointing to a CDN-distributed version. The disadvantage is speed, because our server may serve this file more slowly. The advantage is predictability: if the CDN goes down or the resource is changed/removed, our application could be unexpectedly impacted. Hosting our own copy prevents this.
-
-### Speed
-
-Little consideration was made to speed, other than to ensure that the computations which run are primarily linear (iterating through the data, etc.) and that the application quickly refreshes on a modern browser in a typical (laptop) end-user environment with modest CPU.
-
-If many end-users run in environments with severely limited computing power or limited network bandwidth, that is something to consider. Options include performance monitoring and tuning (to improve performance once on client side) and minifying the javascript file, using CDNs for distribution, etc. (to improve network latency).
-
-## Improvements that can be made
-
-In addition to the design decisions given above, there are also some technical details for which a better solution may exist.
-
-### Data structure to handle letters more appropriately. 
-
-Currently, the various data around the letters 'G', 'A', 'C', 'T' (the character itself, the SVG path data, the base transforms, etc.) are  kept track of by passing around integer identifiers between various functions. This works fine for a small application, but probably makes the code a bit more difficult to modify if another developer wishes to do that.
-
-### Method of encoding letters.
+### Note on letters
 
 So that transforms can be easily applied, I produced predefined SVG path data for the letters 'G', 'C', 'A', and 'T' in a design program and exported them. This created some challenges, because letter paths do not generally have the same width in fonts, whether or not they are monospace. For instance, even in a monospace font, the letter 'T' is more narrow than the letter 'A' and this is compensated for by padding with whitespace--we can't do this easily as part of the SVG path information, to my knowledge. To remedy this situation I wound up applying a lot of predefined transforms to the letters to get them to render as desired. This is an unsatisfying solution, unfortunately.
 
 ## Contact
 
-Sam Lichtenberg (splichte@gmail.com)
+splichte@gmail.com
